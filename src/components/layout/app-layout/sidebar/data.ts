@@ -1,4 +1,5 @@
 import {
+  AiIcon,
   BoxIcon,
   CalendarIcon,
   LayoutGridIcon,
@@ -13,38 +14,43 @@ import type { NavItem } from './types'
 
 export const navItems: NavItem[] = [
   {
-    icon: LayoutGridIcon,
-    name: 'Dashboard',
-    subItems: [{ name: 'Ecommerce', path: '/' }],
+    icon: AiIcon,
+    name: 'Agents',
+    path: '/agents',
   },
-  {
-    icon: CalendarIcon,
-    name: 'Calendar',
-    path: '/calendar',
-  },
-  {
-    icon: UserCircleIcon,
-    name: 'User Profile',
-    path: '/profile',
-  },
-  {
-    icon: ListIcon,
-    name: 'Forms',
-    subItems: [{ name: 'Form Elements', path: '/form-elements' }],
-  },
-  {
-    icon: TableIcon,
-    name: 'Tables',
-    subItems: [{ name: 'Basic Tables', path: '/basic-tables' }],
-  },
-  {
-    icon: PageIcon,
-    name: 'Pages',
-    subItems: [
-      { name: 'Blank Page', path: '/blank' },
-      { name: '404 Error', path: '/error-404' },
-    ],
-  },
+  // {
+  //   icon: LayoutGridIcon,
+  //   name: 'Dashboard',
+  //   subItems: [{ name: 'Ecommerce', path: '/' }],
+  // },
+  // {
+  //   icon: CalendarIcon,
+  //   name: 'Calendar',
+  //   path: '/calendar',
+  // },
+  // {
+  //   icon: UserCircleIcon,
+  //   name: 'User Profile',
+  //   path: '/profile',
+  // },
+  // {
+  //   icon: ListIcon,
+  //   name: 'Forms',
+  //   subItems: [{ name: 'Form Elements', path: '/form-elements' }],
+  // },
+  // {
+  //   icon: TableIcon,
+  //   name: 'Tables',
+  //   subItems: [{ name: 'Basic Tables', path: '/basic-tables' }],
+  // },
+  // {
+  //   icon: PageIcon,
+  //   name: 'Pages',
+  //   subItems: [
+  //     { name: 'Blank Page', path: '/blank' },
+  //     { name: '404 Error', path: '/error-404' },
+  //   ],
+  // },
 ]
 
 export const othersItems: NavItem[] = [

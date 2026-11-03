@@ -15,6 +15,23 @@ const router = createRouter({
       },
     },
     {
+      path: '/agents',
+      name: 'Agents',
+      component: () => import('../views/Agents/AgentList.vue'),
+      meta: {
+        title: 'Daftar Agent',
+      },
+    },
+    {
+      path: '/agents/:id',
+      name: 'AgentDetail',
+      component: () => import('../views/Agents/AgentDetail.vue'),
+      meta: {
+        title: 'Detail Agent',
+      },
+      props: true,
+    },
+    {
       path: '/calendar',
       name: 'Calendar',
       component: () => import('../views/Calendar.vue'),
@@ -146,6 +163,6 @@ const router = createRouter({
 export default router
 
 router.beforeEach((to, from, next) => {
-  document.title = `Vue.js ${to.meta.title} | TailAdmin - Vue.js Tailwind CSS Dashboard Template`
+  document.title = `${to.meta.title ?? 'Admin AI Agent'}`
   next()
 })

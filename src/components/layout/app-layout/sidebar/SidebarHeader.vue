@@ -13,7 +13,7 @@ defineProps<AppSidebarHeaderProps>()
   <SidebarHeader class="px-5 py-8">
     <RouterLink to="/">
       <template v-if="showContent">
-        <img
+        <!-- <img
           class="dark:hidden"
           src="/images/logo/logo.svg"
           alt="Logo"
@@ -28,16 +28,16 @@ defineProps<AppSidebarHeaderProps>()
           width="150"
           height="40"
           :style="{ width: 'auto', height: 'auto' }"
-        />
+        /> -->
       </template>
-      <img
+      <!-- <img
         v-else
         src="/images/logo/logo-icon.svg"
         alt="Logo"
         width="32"
         height="32"
         :style="{ width: 'auto', height: 'auto' }"
-      />
+      /> -->
     </RouterLink>
   </SidebarHeader>
 </template>

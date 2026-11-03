@@ -57,14 +57,14 @@ onBeforeUnmount(() => {
         </Button>
 
         <RouterLink to="/" class="xl:hidden">
-          <img width="154" height="32" class="dark:hidden" src="/images/logo/logo.svg" alt="Logo" />
+          <!-- <img width="154" height="32" class="dark:hidden" src="/images/logo/logo.svg" alt="Logo" />
           <img
             width="154"
             height="32"
             class="hidden dark:block"
             src="/images/logo/logo-dark.svg"
             alt="Logo"
-          />
+          /> -->
         </RouterLink>
 
         <Button
