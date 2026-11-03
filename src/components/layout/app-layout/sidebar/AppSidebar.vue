@@ -10,7 +10,7 @@ import type { MenuType, NavItem } from './types'
 
 const menuSections: { type: MenuType; label: string; items: NavItem[] }[] = [
   { type: 'main', label: 'Menu', items: navItems },
-  { type: 'others', label: 'Others', items: othersItems },
+  // { type: 'others', label: 'Others', items: othersItems },
 ]
 
 const findMatchingSubmenu = (path: string) => {
@@ -57,17 +57,9 @@ const handleSubmenuToggle = (index: number, menuType: MenuType) => {
     <SidebarContent class="overflow-y-auto px-5 duration-300 ease-linear">
       <nav class="mb-6">
         <div class="flex flex-col gap-4">
-          <SidebarNavGroup
-            v-for="section in menuSections"
-            :key="section.type"
-            :label="section.label"
-            :menu-type="section.type"
-            :items="section.items"
-            :open-submenu="openSubmenu"
-            :show-content="showContent"
-            :pathname="pathname"
-            @toggle-submenu="handleSubmenuToggle"
-          />
+          <SidebarNavGroup v-for="section in menuSections" :key="section.type" :label="section.label"
+            :menu-type="section.type" :items="section.items" :open-submenu="openSubmenu" :show-content="showContent"
+            :pathname="pathname" @toggle-submenu="handleSubmenuToggle" />
         </div>
       </nav>
       <SidebarWidget v-if="showContent" />

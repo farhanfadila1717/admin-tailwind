@@ -17,6 +17,12 @@ export const navItems: NavItem[] = [
     icon: AiIcon,
     name: 'Agents',
     path: '/agents',
+    subItems: [
+      {
+        name: 'Create Agent',
+        path: '/agents/create',
+      },
+    ],
   },
   // {
   //   icon: LayoutGridIcon,
@@ -54,32 +60,32 @@ export const navItems: NavItem[] = [
 ]
 
 export const othersItems: NavItem[] = [
-  {
-    icon: PieChartIcon,
-    name: 'Charts',
-    subItems: [
-      { name: 'Line Chart', path: '/line-chart' },
-      { name: 'Bar Chart', path: '/bar-chart' },
-    ],
-  },
-  {
-    icon: BoxIcon,
-    name: 'UI Elements',
-    subItems: [
-      { name: 'Alerts', path: '/alerts' },
-      { name: 'Avatar', path: '/avatars' },
-      { name: 'Badge', path: '/badge' },
-      { name: 'Buttons', path: '/buttons' },
-      { name: 'Images', path: '/images' },
-      { name: 'Videos', path: '/videos' },
-    ],
-  },
-  {
-    icon: PluginIcon,
-    name: 'Authentication',
-    subItems: [
-      { name: 'Sign In', path: '/signin' },
-      { name: 'Sign Up', path: '/signup' },
-    ],
-  },
+  // {
+  //   icon: PieChartIcon,
+  //   name: 'Charts',
+  //   subItems: [
+  //     { name: 'Line Chart', path: '/line-chart' },
+  //     { name: 'Bar Chart', path: '/bar-chart' },
+  //   ],
+  // },
+  // {
+  //   icon: BoxIcon,
+  //   name: 'UI Elements',
+  //   subItems: [
+  //     { name: 'Alerts', path: '/alerts' },
+  //     { name: 'Avatar', path: '/avatars' },
+  //     { name: 'Badge', path: '/badge' },
+  //     { name: 'Buttons', path: '/buttons' },
+  //     { name: 'Images', path: '/images' },
+  //     { name: 'Videos', path: '/videos' },
+  //   ],
+  // },
+  // {
+  //   icon: PluginIcon,
+  //   name: 'Authentication',
+  //   subItems: [
+  //     { name: 'Sign In', path: '/signin' },
+  //     { name: 'Sign Up', path: '/signup' },
+  //   ],
+  // },
 ]

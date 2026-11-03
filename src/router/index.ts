@@ -23,6 +23,14 @@ const router = createRouter({
       },
     },
     {
+      path: '/agents/create',
+      name: 'CreateAgent',
+      component: () => import('../views/Agents/AgentCreate.vue'),
+      meta: {
+        title: 'Create Agent',
+      },
+    },
+    {
       path: '/agents/:id',
       name: 'AgentDetail',
       component: () => import('../views/Agents/AgentDetail.vue'),

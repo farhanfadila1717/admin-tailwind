@@ -25,7 +25,7 @@ import AiIcon from '@/icons/layout/AiIcon.vue';
         </div>
       </div>
 
-      <div class="fixed end-6 bottom-6 z-50 hidden sm:block">
+      <div class="fixed inset-e-6 bottom-6 z-50 hidden sm:block">
         <ThemeToggler />
       </div>
     </div>
