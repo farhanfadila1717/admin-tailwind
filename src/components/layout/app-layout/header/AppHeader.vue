@@ -7,9 +7,7 @@ import { Field } from '@/components/ui/field'
 import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group'
 import { useSidebar } from '@/composables/useSidebar'
 import { HorizontalDotsIcon, MenuTwoIcon, SearchIcon, XIcon } from '@/icons/layout'
-import NotificationDropdown from '../../header/notification-dropdown/NotificationDropdown.vue'
 import ThemeToggleButton from '../../header/theme-toggler/ThemeToggler.vue'
-import UserDropdown from '../../header/user-dropdown/UserDropdown.vue'
 import { cn } from '@/utils/cn'
 
 const inputRef = ref<InstanceType<typeof InputGroupInput> | null>(null)

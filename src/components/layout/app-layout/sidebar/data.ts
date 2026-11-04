@@ -16,8 +16,11 @@ export const navItems: NavItem[] = [
   {
     icon: AiIcon,
     name: 'Agents',
-    path: '/agents',
     subItems: [
+      {
+        name: 'Agent List',
+        path: '/agents',
+      },
       {
         name: 'Create Agent',
         path: '/agents/create',
