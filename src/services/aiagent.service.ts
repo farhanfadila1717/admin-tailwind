@@ -1,4 +1,5 @@
 import type {
+  AiAgentBehaviourResponse,
   AiAgentCreateRequest,
   AiAgentList,
   CreateKnowladgeRequest,
@@ -44,8 +45,21 @@ export async function createAiAgentKnowledge(
   request: CreateKnowladgeRequest,
 ): Promise<SuccessApiResponse> {
   const response = await api.post<ApiResponse<SuccessApiResponse>>(
-    'ai-agent/knowledge/create',
+    'mccarthy/ai-agent/knowledge/create',
     request,
+  )
+
+  const data = response.data.data
+
+  return data
+}
+
+export async function getAiAgentBehaviour(agentId: string): Promise<AiAgentBehaviourResponse> {
+  const response = await api.post<ApiResponse<AiAgentBehaviourResponse>>(
+    'mccarthy/ai-agent/behaviour/detail',
+    {
+      AiAgentId: agentId,
+    },
   )
 
   const data = response.data.data

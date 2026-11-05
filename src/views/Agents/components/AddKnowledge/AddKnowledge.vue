@@ -13,6 +13,7 @@ import { KNOWLEDGE_SUMMARY_TYPES, type CreateKnowladgeRequest, type ExternalKnow
 import AddQnAKnowledge from './AddQnAKnowledge.vue';
 import OpenEndedKnowledge from './OpenEndedKnowledge.vue';
 import ExternalKnowledge from './ExternalKnowledge.vue';
+import { createAiAgentKnowledge } from '@/services/aiagent.service.ts';
 
 const props = defineProps<{
   agentId: string
@@ -29,18 +30,8 @@ const submitting = ref(false)
 const errorMessage = ref('')
 
 async function onSubmit() {
-  // submitting.value = true
-  // errorMessage.value = ''
-
-  // try {
-  //   // TODO: await addAiAgentKnowledge(props.agentId, { ...form })
-  //   emit('added')
-  //   open.value = false // close on success
-  // } catch (ex) {
-  //   errorMessage.value = `${ex}`
-  // } finally {
-  //   submitting.value = false
-  // }
+  submitting.value = true
+  errorMessage.value = ''
 
   const prevValue = createKnowledge.value
   switch (knowledgeType.value) {
@@ -70,12 +61,26 @@ async function onSubmit() {
       break;
   }
 
-  console.log(createKnowledge.value)
+  try {
+    const respone = await createAiAgentKnowledge(createKnowledge.value)
+
+    if (!respone.IsSuccess) {
+      throw 'Failed to create knowledge'
+    }
+
+    emit('added')
+    open.value = false // close on success
+  } catch (ex) {
+    errorMessage.value = `${ex}`
+  } finally {
+    submitting.value = false
+  }
+
 }
 
 const knowledgeType = ref<KnowledgeSummaryType>()
 const createKnowledge = ref<CreateKnowladgeRequest>({
-  AiAgentId: 0,
+  AiAgentId: Number.parseInt(props.agentId),
 })
 
 

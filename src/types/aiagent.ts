@@ -70,3 +70,7 @@ export interface CreateKnowladgeRequest {
   OpenEndedKnowledge?: OpenEndedKnowledge
   ExternalKnowledge?: ExternalKnowledge
 }
+
+export interface AiAgentBehaviourResponse {
+  AiAgentBehaviour: string
+}

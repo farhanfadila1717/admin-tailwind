@@ -4,18 +4,20 @@ import { useRouter } from "vue-router";
 
 import AdminLayout from "@/components/layout/AdminLayout.vue";
 import { Button } from "@/components/ui/button";
+import Field from "@/components/ui/field/Field.vue";
+import FieldLabel from "@/components/ui/field/FieldLabel.vue";
+import { Input } from '@/components/ui/input';
+import { Textarea } from "@/components/ui/textarea";
+import type { AiAgentCreateRequest } from "@/types/aiagent";
+import { createAiAgent } from "@/services/aiagent.service";
 
 const router = useRouter();
 
-interface CreateAgentForm {
-  type: string;
-  description: string;
-}
-
-const form = ref<CreateAgentForm>({
-  type: "",
-  description: "",
-});
+const agentType = ref('')
+const agentName = ref('')
+const agentDescription = ref('')
+const agentBehaviour = ref('')
+const platformIntegration = ref('')
 
 const loading = ref(false);
 const errorMessage = ref("");
@@ -23,23 +25,43 @@ const errorMessage = ref("");
 async function handleSubmit() {
   errorMessage.value = "";
 
-  if (!form.value.type.trim()) {
+  const platformsIntegrationIdNum: number[] = platformIntegration.value.trim()
+    ? platformIntegration.value.split(',').map((value) => Number(value.trim()))
+    : []
+
+  const form: AiAgentCreateRequest = {
+    AiAgentType: agentType.value,
+    AiAgentName: agentName.value,
+    AiAgentDescription: agentName.value,
+    AiAgentBehaviour: agentBehaviour.value,
+    AiAgentLinkedPlatformIntegrationId: platformsIntegrationIdNum
+  }
+
+  if (!form.AiAgentType.trim()) {
     errorMessage.value = "Agent type is required.";
     return;
   }
 
-  if (!form.value.description.trim()) {
-    errorMessage.value = "Description is required.";
+  if (!form.AiAgentName.trim()) {
+    errorMessage.value = "Agent name is required.";
     return;
   }
 
-
+  if (!form.AiAgentBehaviour.trim()) {
+    errorMessage.value = "Agent behaviour is required.";
+    return;
+  }
 
   loading.value = true;
 
   try {
+    const response = await createAiAgent(form)
 
-    router.push("/agents");
+    if (!response.IsSuccess) {
+      throw 'Failed to Create new AiAgent'
+    }
+
+    // router.push("/agents");
   } catch (error) {
     console.error("Failed to create agent:", error);
     errorMessage.value = "Failed to create agent. Please try again.";
@@ -73,47 +95,59 @@ function handleCancel() {
 
       <!-- Form Card -->
       <form @submit.prevent="handleSubmit">
-        <div class="rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-white/[0.03]">
-          <div class="mb-6 border-b border-gray-100 pb-4 dark:border-gray-800">
-            <h2 class="text-lg font-semibold text-gray-800 dark:text-white">
-              General Information
-            </h2>
-
-            <p class="mt-1 text-sm text-gray-500">
-              Provide basic information about your agent.
-            </p>
-          </div>
-
-          <div class="space-y-5">
+        <div class="rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-800">
+          <div class="space-y-4">
             <!-- Agent Type -->
             <div>
-              <label for="type" class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
-                Agent Type <span class="text-red-500">*</span>
-              </label>
+              <Field>
+                <FieldLabel>
+                  Agent Type
+                </FieldLabel>
 
-              <input id="type" v-model="form.type" type="text" placeholder="e.g. Customer Support" required
-                class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 text-sm text-gray-800 outline-none transition placeholder:text-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10 dark:border-gray-700 dark:text-white" />
+                <Input v-model="agentType" type="text" placeholder="Type agent type here" />
+              </Field>
+            </div>
 
-              <p class="mt-1.5 text-xs text-gray-500">
-                Identify the purpose or category of this agent.
-              </p>
+            <div>
+              <Field>
+                <FieldLabel>
+                  Agent Name
+                </FieldLabel>
+
+                <Input v-model="agentName" type="text" placeholder="Type agent name here" />
+              </Field>
             </div>
 
             <!-- Description -->
             <div>
-              <label for="description" class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
-                Description <span class="text-red-500">*</span>
-              </label>
+              <Field>
+                <FieldLabel>
+                  Agent Description
+                </FieldLabel>
 
-              <textarea id="description" v-model="form.description" rows="3"
-                placeholder="Describe what this agent does..." required
-                class="w-full resize-y rounded-lg border border-gray-300 bg-transparent px-4 py-3 text-sm text-gray-800 outline-none transition placeholder:text-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10 dark:border-gray-700 dark:text-white" />
-
-              <p class="mt-1.5 text-xs text-gray-500">
-                A short description of the agent's responsibilities.
-              </p>
+                <Textarea v-model="agentDescription" placeholder="Type agent description here" />
+              </Field>
             </div>
 
+            <div>
+              <Field>
+                <FieldLabel>
+                  Agent Behaviour
+                </FieldLabel>
+                <Textarea v-model="agentBehaviour" placeholder="Type agent behaviour here" />
+              </Field>
+            </div>
+
+            <div>
+              <Field>
+                <FieldLabel>
+                  Platform Integration
+                </FieldLabel>
+
+                <Input type="text" v-model="platformIntegration"
+                  placeholder="Type agent type here (eg. 111, 112, 113)" />
+              </Field>
+            </div>
           </div>
 
           <!-- Error Message -->
@@ -124,9 +158,6 @@ function handleCancel() {
 
           <!-- Actions -->
           <div class="mt-8 flex justify-end gap-3 border-t border-gray-100 pt-5 dark:border-gray-800">
-            <Button type="button" variant="outline" :disabled="loading" @click="handleCancel">
-              Cancel
-            </Button>
 
             <Button type="submit" :disabled="loading">
               {{ loading ? "Creating..." : "Create Agent" }}

@@ -76,10 +76,12 @@ onMounted(fetchAiAgentKnowledgeList)
   <div v-else class="flex flex-col gap-4">
     <div v-for="value in knowledgeList" :key="value.KnowledgeSummaryId">
       <div class="border p-4 rounded-lg">
-        <div class="flex items-center space-x-2 mb-2">
-          <div class="size-2 outline-2 outline-green-100 bg-green-400 rounded-full"></div>
-          <h1>{{ value.KnowledgeSummaryName }}</h1>
-          <div class="ml-auto">
+        <div class="flex flex-col justify-start sm:flex-row sm:items-center space-x-2 mb-2">
+          <div class="flex items-center space-x-2">
+            <div class="size-2 outline-2 outline-green-100 bg-green-400 rounded-full"></div>
+            <h1>{{ value.KnowledgeSummaryName }}</h1>
+          </div>
+          <div class="hidden sm:block ml-auto">
             <Switch :model-value="value.KnowledgeSummaryStatus === `ACTIVE`" class="mr-4" />
             <Button variant="outline">
               <TrashBinIcon />
@@ -91,6 +93,13 @@ onMounted(fetchAiAgentKnowledgeList)
         <OpenEndedKnowledge v-else-if="value.KnowledgeSummaryType === 'OPEN_ENDED'" :-knowledge-summary="value" />
         <ExternalKnowledge v-else-if="value.KnowledgeSummaryType === 'EXTERNAL_KNOWLEDGE'"
           :-knowledge-summary="value" />
+        <div class="mt-4 sm:hidden flex items-center justify-end">
+          <Switch :model-value="value.KnowledgeSummaryStatus === `ACTIVE`" class="mr-4" />
+          <Button variant="outline">
+            <TrashBinIcon />
+            Delete
+          </Button>
+        </div>
       </div>
     </div>
   </div>

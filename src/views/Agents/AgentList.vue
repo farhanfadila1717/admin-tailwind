@@ -16,7 +16,7 @@ async function fetchAiAgentList() {
   errorMessage.value = ""
 
   try {
-    const response = await getAiAgentList({ limit: 10, offset: 0 })
+    const response = await getAiAgentList({ limit: 100, offset: 0 })
 
     aiAgentList.value = response.AiAgentList
   } catch (ex) {
