@@ -95,7 +95,7 @@ function handleCancel() {
 
       <!-- Form Card -->
       <form @submit.prevent="handleSubmit">
-        <div class="rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-800">
+        <div class="rounded-xl border border-gray-200 bg-white dark:bg-gray-800 p-6 dark:border-gray-800">
           <div class="space-y-4">
             <!-- Agent Type -->
             <div>
