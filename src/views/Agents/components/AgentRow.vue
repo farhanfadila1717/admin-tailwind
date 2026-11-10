@@ -4,16 +4,24 @@ import { TableCell, TableRow } from '@/components/ui/table'
 import { cn } from '@/utils/cn'
 import type { AiAgent } from '@/types/aiagent'
 import { ArrowRightIcon } from '@/icons/layout'
+import { useRouter } from 'vue-router'
 
 export interface AgentRow {
   order: AiAgent
 }
 
 const props = defineProps<AgentRow>()
+const router = useRouter()
+
+function goToDetail(event: MouseEvent) {
+  // Let the inner link/button handle its own click, so we don't navigate twice
+  if ((event.target as HTMLElement).closest('a, button')) return
+  router.push(`/agents/${props.order.id}`)
+}
 </script>
 
 <template>
-  <TableRow :class="cn('cursor-pointer')">
+  <TableRow :class="cn('cursor-pointer')" @click="goToDetail">
     <TableCell class="px-6 py-4 text-start">
       <div class="flex items-center gap-3">
 
