@@ -40,8 +40,8 @@ const goNext = () => {
       <div class="flex items-center gap-2">
         <PaginationPrevious href="#" size="icon" variant="outline" :disabled="currentPage <= 1"
           @click.prevent="goPrevious" />
-        <!-- <PaginationNext href="#" size="icon" variant="outline" :disabled="currentPage >= totalPages"
-          @click.prevent="goNext" /> -->
+        <h1 class="mx-2">{{ currentPage }}</h1>
+        <PaginationNext href="#" size="icon" variant="outline" :disabled="isLast" @click.prevent="goNext" />
       </div>
     </div>
 
@@ -53,18 +53,6 @@ const goNext = () => {
             <PaginationPrevious href="#" size="icon" variant="outline" :disabled="currentPage <= 1"
               @click.prevent="goPrevious" />
           </PaginationItem>
-
-          <!-- <template v-for="item in pages" :key="item">
-            <PaginationItem v-if="item === 'ellipsis-start' || item === 'ellipsis-end'">
-              <PaginationEllipsis />
-            </PaginationItem>
-            <PaginationItem v-else>
-              <PaginationLink href="#" size="icon" variant="outline" :is-active="currentPage === item"
-                @click.prevent="emit('pageChange', item)">
-                {{ item }}
-              </PaginationLink>
-            </PaginationItem>
-          </template> -->
           <h1 class="mx-2">{{ currentPage }}</h1>
           <PaginationItem>
             <PaginationNext href="#" size="icon" variant="outline" :disabled="isLast" @click.prevent="goNext" />
