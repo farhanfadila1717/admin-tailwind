@@ -1,16 +1,8 @@
 import {
   AiIcon,
-  BoxIcon,
-  CalendarIcon,
-  LayoutGridIcon,
-  ListIcon,
-  PageIcon,
-  PieChartIcon,
-  PluginIcon,
-  TableIcon,
-  UserCircleIcon,
 } from '@/icons/layout'
 import type { NavItem } from './types'
+import LinkIcon from '@/icons/layout/LinkIcon.vue'
 
 export const navItems: NavItem[] = [
   {
@@ -24,6 +16,16 @@ export const navItems: NavItem[] = [
       {
         name: 'Create Agent',
         path: '/agents/create',
+      },
+    ],
+  },
+  {
+    icon: LinkIcon,
+    name: 'Platform',
+    subItems: [
+      {
+        name: 'Platform List',
+        path: '/platform',
       },
     ],
   },

@@ -39,6 +39,14 @@ const router = createRouter({
       },
       props: true,
     },
+     {
+      path: '/platform',
+      name: 'Platform',
+      component: () => import('../views/Platform/PlatformList.vue'),
+      meta: {
+        title: 'Daftar Platform',
+      },
+    },
     {
       path: '/calendar',
       name: 'Calendar',
