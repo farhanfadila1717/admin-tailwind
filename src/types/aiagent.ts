@@ -74,3 +74,10 @@ export interface CreateKnowladgeRequest {
 export interface AiAgentBehaviourResponse {
   AiAgentBehaviour: string
 }
+
+export interface AiAgentUpdateRequest {
+  AiAgentId: string
+  AiBehavior?: string
+  AiGuardrails?: string
+  AiDescription?: string
+}

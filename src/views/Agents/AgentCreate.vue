@@ -30,24 +30,24 @@ async function handleSubmit() {
     : []
 
   const form: AiAgentCreateRequest = {
-    AiAgentType: agentType.value,
-    AiAgentName: agentName.value,
-    AiAgentDescription: agentName.value,
-    AiAgentBehaviour: agentBehaviour.value,
+    AiAgentType: agentType.value.trim(),
+    AiAgentName: agentName.value.trim(),
+    AiAgentDescription: agentName.value.trim(),
+    AiAgentBehaviour: agentBehaviour.value.trim(),
     AiAgentLinkedPlatformIntegrationId: platformsIntegrationIdNum
   }
 
-  if (!form.AiAgentType.trim()) {
+  if (!form.AiAgentType) {
     errorMessage.value = "Agent type is required.";
     return;
   }
 
-  if (!form.AiAgentName.trim()) {
+  if (!form.AiAgentName) {
     errorMessage.value = "Agent name is required.";
     return;
   }
 
-  if (!form.AiAgentBehaviour.trim()) {
+  if (!form.AiAgentBehaviour) {
     errorMessage.value = "Agent behaviour is required.";
     return;
   }

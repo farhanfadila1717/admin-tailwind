@@ -39,12 +39,20 @@ const router = createRouter({
       },
       props: true,
     },
-     {
+    {
       path: '/platform',
       name: 'Platform',
       component: () => import('../views/Platform/PlatformList.vue'),
       meta: {
         title: 'Daftar Platform',
+      },
+    },
+    {
+      path: '/platform/create',
+      name: 'CreatePlatform',
+      component: () => import('../views/Platform/PlatformCreate.vue'),
+      meta: {
+        title: 'Create Platform',
       },
     },
     {

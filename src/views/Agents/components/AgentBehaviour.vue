@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import Button from '@/components/ui/button/Button.vue';
 import { Field, FieldLabel } from '@/components/ui/field';
 import Textarea from '@/components/ui/textarea/Textarea.vue';
-import { getAiAgentBehaviour } from '@/services/aiagent.service';
+import { getAiAgentBehaviour, updateAiAgentBehaviour } from '@/services/aiagent.service';
 import { onMounted, ref } from 'vue';
 
 export interface AgentBehaviourProps {
@@ -10,6 +11,7 @@ export interface AgentBehaviourProps {
 
 const props = defineProps<AgentBehaviourProps>();
 const behaviour = ref('')
+const originalBehaviour = ref('')
 const loading = ref(false)
 const errorMessage = ref("")
 
@@ -21,6 +23,29 @@ async function fetchAiAgentBehaviour() {
     const response = await getAiAgentBehaviour(props.agentId)
 
     behaviour.value = response.AiAgentBehaviour
+    originalBehaviour.value = response.AiAgentBehaviour
+  } catch (ex) {
+    errorMessage.value = `${ex}`
+  } finally {
+    loading.value = false
+  }
+}
+
+async function updateBehaviour() {
+  loading.value = true
+  errorMessage.value = ""
+
+  try {
+    const response = await updateAiAgentBehaviour({
+      AiAgentId: props.agentId,
+      AiBehavior: behaviour.value.trim(),
+    })
+
+    if (!response.IsSuccess) {
+      throw 'Failed to update agent behaviour'
+    }
+
+    fetchAiAgentBehaviour()
   } catch (ex) {
     errorMessage.value = `${ex}`
   } finally {
@@ -60,5 +85,9 @@ onMounted(fetchAiAgentBehaviour)
 
     <!-- Loaded view -->
     <Textarea v-else v-model="behaviour" placeholder="Type behaviour here" :rows="10" />
+
+    <div v-if="originalBehaviour != behaviour" class="text-end mt-4">
+      <Button @click="updateBehaviour()">{{ loading ? "Loading..." : "Update" }} </Button>
+    </div>
   </Field>
 </template>
