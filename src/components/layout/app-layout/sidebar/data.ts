@@ -3,6 +3,7 @@ import {
 } from '@/icons/layout'
 import type { NavItem } from './types'
 import LinkIcon from '@/icons/layout/LinkIcon.vue'
+import ExecutionIcon from '@/icons/layout/ExecutionIcon.vue'
 
 export const navItems: NavItem[] = [
   {
@@ -26,6 +27,16 @@ export const navItems: NavItem[] = [
       {
         name: 'Platform List',
         path: '/platform',
+      },
+    ],
+  },
+   {
+    icon: ExecutionIcon,
+    name: 'Execution',
+    subItems: [
+      {
+        name: 'Execution List',
+        path: '/execution',
       },
     ],
   },

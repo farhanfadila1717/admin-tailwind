@@ -119,7 +119,7 @@ onMounted(fetchAiAgentList)
 
                 <!-- Loaded -->
                 <template v-else-if="platformList.length > 0">
-                  <PlatformRow v-for="item in platformList" :item="item" />
+                  <PlatformRow v-for="item in platformList" :key="item.PlatformIntegrationId.toString()" :item="item" />
                 </template>
 
                 <!-- Empty -->

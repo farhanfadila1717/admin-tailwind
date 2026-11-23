@@ -55,6 +55,23 @@ const router = createRouter({
         title: 'Create Platform',
       },
     },
+     {
+      path: '/execution',
+      name: 'Execution',
+      component: () => import('../views/Execution/ExecutionList.vue'),
+      meta: {
+        title: 'Daftar Execution',
+      },
+    },
+    {
+      path: '/execution/:id',
+      name: 'ExecutionDetail',
+      component: () => import('../views/Execution/ExecutionDetail.vue'),
+      meta: {
+        title: 'Detail Execution',
+      },
+      props: true,
+    },
     {
       path: '/calendar',
       name: 'Calendar',
